@@ -1,0 +1,28 @@
+server:
+  port: 5000
+spring:
+  application:
+    name: gulimall-coupon
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+#        namespace: 5ef689bb-9e4f-4ff8-b5d3-92d877c07cfb
+      config:
+#        file-extension: yaml
+        server-addr: 127.0.0.1:8848`
+        namespace: 5ef689bb-9e4f-4ff8-b5d3-92d877c07cfb
+        extension-configs:
+          - dataid: coupon-datasource.yml
+            group: dev
+            refresh: false
+
+          - dataid: coupon-mybatis.yml
+            group: dev
+            refresh: false
+
+          - dataid: coupon-other.yml
+            group: dev
+            refresh: true
+
+

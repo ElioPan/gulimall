@@ -15,9 +15,9 @@
         <module>gulimall-member</module>
         <module>gulimall-ware</module>
         <module>gulimall-product</module>
-        <module>renren-fast</module>
+        <!--renren逆向构建工具，使用完毕-->
 <!--        <module>renren-generator</module>-->
-        <module>renren-generator</module>
+        <module>renren-fast</module>
         <module>gulimall-common</module>
     </modules>
 

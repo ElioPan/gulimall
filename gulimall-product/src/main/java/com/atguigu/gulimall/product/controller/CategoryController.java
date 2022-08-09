@@ -1,7 +1,9 @@
 package com.atguigu.gulimall.product.controller;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import com.atguigu.common.utils.ValidatorUtils;
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -35,12 +37,29 @@ public class CategoryController {
     /**
      * 列表
      */
-    @RequestMapping("/list")
+    @RequestMapping("/list/tree")
 //    @RequiresPermissions("product:category:list")
-    public R list(@RequestParam Map<String, Object> params){
-        PageUtils page = categoryService.queryPage(params);
-
-        return R.ok().put("page", page);
+    public R list(){
+        List<CategoryEntity> categoryEntities = categoryService.listWithTree();
+        List<CategoryEntity> collect = categoryEntities.stream().filter(category ->
+                category.getParentCid() == 0).map((menu)->{
+                    menu.setChildren(getChildCategory(menu,categoryEntities));
+                    return menu;
+        }).sorted((a,b) -> {
+            return (a.getSort()==null? 0 : a.getSort()) - (b.getSort() == null? 0 : b.getSort());
+        }).collect(Collectors.toList());
+        return R.ok().put("data", collect);
+    }
+    private List<CategoryEntity> getChildCategory(CategoryEntity root,List<CategoryEntity> all){
+        List<CategoryEntity> subCate = all.stream().filter((cate) -> {
+            return cate.getParentCid() == root.getCatId();
+        }).map((cate) -> {
+            cate.setChildren(getChildCategory(cate,all));
+            return cate;
+        }).sorted((a,b) -> {
+            return (a.getSort()==null? 0 : a.getSort()) - (b.getSort() == null? 0 : b.getSort());
+        }).collect(Collectors.toList());
+        return subCate;
     }
 
 

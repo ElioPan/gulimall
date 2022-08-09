@@ -1,0 +1,20 @@
+server:
+  port: 8000
+spring:
+  application:
+    name: gulimall-product
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 25b1e315-db18-4e4c-9a87-0d82eec9e21a
+        extension-configs:
+          - dataid: product-datasource.yml
+            group: dev
+            refresh: false
+
+          - dataid: product-other.yml
+            group: dev
+            refresh: false

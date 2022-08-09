@@ -1,0 +1,20 @@
+server:
+  port: 6001
+spring:
+  application:
+    name: gulimall-member
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: a341c9b5-31be-4fc8-9520-014d018b2e5c
+        extension-configs:
+          - dataid: member-datasource.yml
+            group: dev
+            refresh: false
+
+          - dataid: member-other.yml
+            group: dev
+            refresh: false

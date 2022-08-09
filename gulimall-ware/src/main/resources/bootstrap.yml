@@ -1,0 +1,20 @@
+server:
+  port: 9000
+spring:
+  application:
+    name: gulimall-ware
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: eb6c04c0-8c69-4e9d-be31-394fc5c92211
+        extension-configs:
+          - dataid: ware-datasource.yml
+            group: dev
+            refresh: false
+
+          - dataid: ware-other.yml
+            group: dev
+            refresh: false

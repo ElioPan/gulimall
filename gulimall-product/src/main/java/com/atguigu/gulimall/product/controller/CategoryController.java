@@ -8,11 +8,7 @@ import java.util.stream.Collectors;
 import com.atguigu.common.utils.ValidatorUtils;
 //import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.atguigu.gulimall.product.entity.CategoryEntity;
 import com.atguigu.gulimall.product.service.CategoryService;
@@ -71,7 +67,7 @@ public class CategoryController {
     public R info(@PathVariable("catId") Long catId){
         CategoryEntity category = categoryService.getById(catId);
 
-        return R.ok().put("category", category);
+        return R.ok().put("data", category);
     }
 
     /**
@@ -91,9 +87,22 @@ public class CategoryController {
     @RequestMapping("/update")
 //    @RequiresPermissions("product:category:update")
     public R update(@RequestBody CategoryEntity category){
-        ValidatorUtils.validateEntity(category);
-        categoryService.updateById(category);
+//        ValidatorUtils.validateEntity(category);
+        categoryService.updateCascade(category);
         
+        return R.ok();
+    }
+    @RequestMapping("/update/sort")
+//    @RequiresPermissions("product:category:update")
+    public R updateSort(@RequestBody CategoryEntity[] category){
+//        ValidatorUtils.validateEntity(category);
+        categoryService.updateBatchById(Arrays.asList(category));
+
+        return R.ok();
+    }
+    @PostMapping("/update1")
+    public R update1(@RequestBody CategoryEntity category){
+        categoryService.updateById1(category);
         return R.ok();
     }
 
@@ -103,7 +112,7 @@ public class CategoryController {
     @RequestMapping("/delete")
 //    @RequiresPermissions("product:category:delete")
     public R delete(@RequestBody Long[] catIds){
-        categoryService.removeByIds(Arrays.asList(catIds));
+        categoryService.removeMenusByIds(Arrays.asList(catIds));
 
         return R.ok();
     }

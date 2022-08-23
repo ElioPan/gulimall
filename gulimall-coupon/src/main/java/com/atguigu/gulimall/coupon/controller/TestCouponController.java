@@ -22,7 +22,7 @@ public class TestCouponController {
         return R.ok().put("coupon",couponEntity);
     }
 
-    @Value("${test.coupon}")
+//    @Value("${test.coupon}")
     String testValue;
     @GetMapping("/coupon/config")
     public String test2(){

@@ -1,0 +1,6 @@
+logging:
+  level:
+    com.atguigu: debug
+spring:
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss

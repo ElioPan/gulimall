@@ -1,0 +1,12 @@
+server:
+   port: 30000
+spring:
+  application:
+    name: gulimall-third-party
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 55681cc1-812c-4b56-8aea-fd4634ed20d7

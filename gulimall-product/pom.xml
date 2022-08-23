@@ -18,13 +18,29 @@
         <spring-cloud.version>2021.0.3</spring-cloud.version>
     </properties>
     <dependencies>
+
+        <!--nable to create a Configuration, because no Jakarta Bean Validation provider could be found.
+         Add a provider like Hibernate Validator (RI) to your classpath-->
+        
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--指定版本的open feign有冲突-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework.cloud</groupId>-->
+<!--            <artifactId>spring-cloud-starter-openfeign</artifactId>-->
+<!--            <version>2.2.6.RELEASE</version>-->
+<!--        </dependency>-->
+        <!--试试没有默认版本的feign-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.aliyun</groupId>
+            <artifactId>aliyun-java-sdk-core</artifactId>
+            <version>4.4.5</version>
         </dependency>
 
         <dependency>
@@ -45,8 +61,17 @@
             <groupId>com.atuguigu.gulimall</groupId>
             <artifactId>gulimall-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
+
         </dependency>
+        <!--@valid校验不生效-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
+            <version>2.7.2</version>
+        </dependency>
+
     </dependencies>
+    <!--jar包管理，openfeign没有指定版本-->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -56,10 +81,9 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
-
-
         </dependencies>
     </dependencyManagement>
+
 
     <build>
         <plugins>

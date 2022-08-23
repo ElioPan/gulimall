@@ -1,6 +1,8 @@
 package com.atguigu.gulimall.product.service.impl;
 
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
@@ -11,6 +13,7 @@ import com.atguigu.common.utils.Query;
 import com.atguigu.gulimall.product.dao.SpuInfoDescDao;
 import com.atguigu.gulimall.product.entity.SpuInfoDescEntity;
 import com.atguigu.gulimall.product.service.SpuInfoDescService;
+import org.springframework.transaction.annotation.Transactional;
 
 
 @Service("spuInfoDescService")
@@ -24,6 +27,19 @@ public class SpuInfoDescServiceImpl extends ServiceImpl<SpuInfoDescDao, SpuInfoD
         );
 
         return new PageUtils(page);
+    }
+    @Transactional
+    @Override
+    public void saveDesc(Long spuId, List<String> description) {
+        if(description == null || description.size()==0){
+
+        }else {
+            SpuInfoDescEntity spuInfoDescEntity = new SpuInfoDescEntity();
+            spuInfoDescEntity.setSpuId(spuId);
+            String join = String.join(",", description);
+            spuInfoDescEntity.setDecript(join);
+            save(spuInfoDescEntity);
+        }
     }
 
 }

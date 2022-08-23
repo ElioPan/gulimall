@@ -13,6 +13,17 @@
         <result property="wareId" column="ware_id"/>
         <result property="status" column="status"/>
     </resultMap>
+    <update id="updateStausByPurchaseIds">
+        update wms_purchase_detail set status = #{status}
+        where purchase_id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </update>
+    <update id="updateStausByItemId">
+        update wms_purchase_detail set status = #{status}
+        where id = #{id}
+    </update>
 
 
 </mapper>

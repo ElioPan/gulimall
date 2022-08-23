@@ -13,5 +13,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface CategoryDao extends BaseMapper<CategoryEntity> {
-	
+    public int updateCateById2(CategoryEntity category);
 }

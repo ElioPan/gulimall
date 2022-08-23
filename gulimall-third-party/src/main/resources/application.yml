@@ -1,0 +1,6 @@
+alibaba:
+  cloud:
+    access-key: LTAI5tP1JzVPNPsHwTBmFUr4
+    secret-key: mlJHOlMmOw9HWCNsh9DSo4QIDkRqDR
+    oss:
+      endpoint: oss-cn-shanghai.aliyuncs.com

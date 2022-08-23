@@ -1,5 +1,6 @@
 package com.atguigu.gulimall.ware.service.impl;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 import java.util.Map;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -23,6 +24,22 @@ public class WareInfoServiceImpl extends ServiceImpl<WareInfoDao, WareInfoEntity
                 new QueryWrapper<WareInfoEntity>()
         );
 
+        return new PageUtils(page);
+    }
+
+    @Override
+    public PageUtils queryPageByCondition(Map<String, Object> params) {
+        QueryWrapper<WareInfoEntity> wrapper = new QueryWrapper<>();
+        String key = (String) params.get("key");
+        if(StringUtils.isNotEmpty(key)){
+            wrapper.eq("id",key)
+                    .or().like("name",key)
+                    .or().like("address",key);
+        }
+        IPage<WareInfoEntity> page = page(
+                new Query<WareInfoEntity>().getPage(params),
+                wrapper
+        );
         return new PageUtils(page);
     }
 

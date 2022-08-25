@@ -30,9 +30,9 @@ public class OssController {
     String endpoint = "oss-cn-shanghai.aliyuncs.com";
     // 云账号AccessKey有所有API访问权限，建议遵循阿里云安全最佳实践，创建并使用RAM子账号进行API访问或日常运维，请登录 https://ram.console.aliyun.com 创建。
 //    @Value("${alibaba.cloud.access-key}")
-    String accessKeyId = "LTAI5tP1JzVPNPsHwTBmFUr4";
+    String accessKeyId = "密钥泄露";
 //    @Value("${alibaba.cloud.secret-key}")
-    String accessKeySecret = "mlJHOlMmOw9HWCNsh9DSo4QIDkRqDR";
+    String accessKeySecret = "密钥泄露";
 
     String bucket = "gulimall-elio"; // 请填写您的 bucketname 。
     String host = "https://" + bucket + "." + endpoint; // host的格式为 bucketname.endpoint
